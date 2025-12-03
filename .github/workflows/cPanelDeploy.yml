@@ -26,4 +26,4 @@ jobs:
           protocol: ftp        # use ftps if your host supports it
           port: 21             # or 21/990 as needed
           local-dir: ./        # what you want to upload
-          server-dir: /public_html/mazingbusiness_git/   # path on your cPanel account
+          server-dir: /   # path on your cPanel account
