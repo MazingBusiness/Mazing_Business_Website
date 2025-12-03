@@ -1,0 +1,29 @@
+name: Publish Website to cPanel
+
+on:
+  push:
+    branches:
+      - main   # or your branch name
+
+jobs:
+  ftp-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+
+          # adjust these for your cPanel:
+          protocol: ftp        # use ftps if your host supports it
+          port: 21             # or 21/990 as needed
+          local-dir: ./        # what you want to upload
+          server-dir: /public_html/mazingbusiness_git/   # path on your cPanel account
